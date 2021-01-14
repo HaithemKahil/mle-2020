@@ -3,7 +3,15 @@ import pandas as pd
 from dataset_manager.DataSearchUtils import *
 
 
-class NaiveRecommender:
+class Recommender:
+    def fit(self, **kwargs):
+        pass
+
+    def predict(self, **kwargs):
+        pass
+
+
+class NaiveRecommender(Recommender):
 
     def __init__(self, movies, users, ratings) -> None:
         self.movies = movies
@@ -11,7 +19,8 @@ class NaiveRecommender:
         self.ratings = ratings
         self.similarity = FeaturesUtils.calculate_similarity_matrix(movies)
 
-    def get_recommendations(self,user_id):
+    def predict(self, **kwargs):
+        user_id = kwargs.get('user_id')
         top_movies = self.ratings[self.ratings['user_id'] == user_id].sort_values(by='rating', ascending=False).head(3)[
             'movie_id']
         index = ['movie_id', 'title', 'similarity']
