@@ -19,7 +19,7 @@ class NaiveRecommender(Recommender):
         self.ratings = ratings
         self.similarity = FeaturesUtils.calculate_similarity_matrix(movies)
 
-    def predict(self, **kwargs):
+    def get_recommendations(self, **kwargs):
         user_id = kwargs.get('user_id')
         top_movies = self.ratings[self.ratings['user_id'] == user_id].sort_values(by='rating', ascending=False).head(3)[
             'movie_id']
