@@ -1,3 +1,5 @@
+
+
 def get_movie_id(movies, title, year=None):
     res = movies[movies['title'] == title]
     if year:
@@ -11,8 +13,10 @@ def get_movie_id(movies, title, year=None):
     else:
         return res.index[0]
 
+
 def get_movie_name(movies, index):
     return movies.iloc[index].title
+
 
 def get_movie_year(movies, index):
     return movies.iloc[index].year
